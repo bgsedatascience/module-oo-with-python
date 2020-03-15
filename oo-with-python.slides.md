@@ -230,8 +230,8 @@ We'll create a simple classifier that gets trained on some data, then makes a pr
 ```{python}
 class ForgetfulClassifier():
     def __init__(self, K):
-        super(ForgetfulClassifier, self).__init__()
         self.K = K
+        self.is_fitted = False
 
     def fit(self, X, y):
         self.is_fitted = True
@@ -288,13 +288,13 @@ Then, our ForgetfulClassifier can inherit from this class:
 ```{python}
 class ForgetfulClassifier(PredeterminedClassifer):
     def __init__(self, K):
-        super(KAverageClassifier, self).__init__()
+        super().__init__()
         self.K = K
 
     def fit(self, X, y):
+        self.is_fitted = True
         self.y = y[-self.K:]
         self.prediction = sum(self.y)/self.K
-        self.is_fitted
 ```
 
 Notes: super, overriding methods, not overriding methods.
